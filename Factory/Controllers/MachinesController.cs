@@ -7,11 +7,11 @@ using System.Linq;
 
 namespace Factory.Controllers
 {
-  public class MachineController : Controller
+  public class MachinesController : Controller
   {
     private readonly FactoryContext _db;
 
-    public MachineController(FactoryContext db)
+    public MachinesController(FactoryContext db)
     {
       _db = db;
     }
@@ -84,6 +84,49 @@ namespace Factory.Controllers
       return RedirectToAction("Index");
     }
 
+    public ActionResult AssignAnotherEngineer(int id)
+    {
+      var thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
+      ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "Name");
+      return View(thisMachine);
+    }
+
+    [HttpPost]
+    public ActionResult AssignAnotherEngineer(Machine machine, int EngineerId)
+    {
+      foreach(EngineerMachine entry in _db.EngineerMachine)
+      {
+        if(machine.MachineId == entry.MachineId && EngineerId == entry.EngineerId )
+        {
+          return RedirectToAction("Index");
+        }
+      }
+      if (EngineerId != 0)
+      {
+        _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = EngineerId, MachineId = machine.MachineId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Index");
+    }
+
+    // [HttpPost]
+    //   public ActionResult AddCategory(Item item, int CategoryId)
+    //   {
+    //     foreach(CategoryItem entry in _db.CategoryItem)
+    //     {
+    //       if(item.ItemId == entry.ItemId && CategoryId == entry.CategoryId)
+    //       {
+    //         return RedirectToAction("Index");
+    //       }
+    //     }
+      
+    //     if (CategoryId != 0) 
+    //     {
+    //       _db.CategoryItem.Add(new CategoryItem() { CategoryId = CategoryId, ItemId = item.ItemId });
+    //       _db.SaveChanges();
+    //     }
+    //       return RedirectToAction("Index");
+    //   }
 
   }
 }

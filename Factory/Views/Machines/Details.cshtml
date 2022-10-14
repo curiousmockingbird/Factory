@@ -1,0 +1,34 @@
+@{
+  Layout = "_Layout";
+}
+@using Factory.Models;
+@model Factory.Models.Machine
+
+<div class="container">
+<h2>Machine details:</h2>
+<hr />
+<h3>Name: @Html.DisplayFor(model => model.Name)</h3>
+
+<h3>Working since: @Html.DisplayFor(model => model.WorkingSince)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This machine hasn't been assigned to any engineer yet!</p>
+}
+else
+{
+  <h4>Engineers assigned to this machine:</h4>
+  <ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+    <li>@join.Engineer.Name</li>
+  }
+  </ul>
+  <p>@Html.ActionLink("Delete machine from database", "Delete", new { id = Model.MachineId })</p>
+  <hr />
+}
+
+<p>@Html.ActionLink("Delete assigned engineers", "Edit", new { id = Model.MachineId })</p>
+<p>@Html.ActionLink("Assign to another engineer", "AssignAnotherEngineer", new { id = Model.MachineId })</p>
+<p>@Html.ActionLink("Back to list of machines", "Index")</p>
+</div>

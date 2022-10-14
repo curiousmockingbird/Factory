@@ -1,0 +1,33 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Engineer
+
+<div class="container">
+
+<h4>Add a new engineer to the database:</h4>
+<hr />
+@using (Html.BeginForm())
+{
+  <p>Name: @Html.TextBoxFor(model => model.Name)</p>
+  <hr />
+  <p>Since when is this engineer working?</p>
+  @Html.EditorFor(model => model.WorkingSince)
+  <hr />
+  <p>Assign this engineer to an machine,<br> if there are any in the database already:</p>
+  
+  @* @if(@Model.JoinEntities.Count == 0)
+  {
+    <p>There isn't any engineers in the database yet!</p>
+  } *@
+  
+    @Html.Label("Select machine")
+    @Html.DropDownList("MachineId")<br>
+
+  <input type="submit" value="Add new engineer" class="btn btn-primary" />
+}
+<hr />
+<p>@Html.ActionLink("Show all engineers", "Index")</p>
+
+</div>

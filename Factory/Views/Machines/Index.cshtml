@@ -1,0 +1,27 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Factory.Models;
+
+<div class="container">
+
+<h1>Our machines:</h1>
+
+@if (@Model.Count == 0)
+{
+  <h3>No machines have been added to the database yet!</h3>
+} 
+else 
+{
+@foreach (Machine machine in Model)
+{
+  <li>@Html.ActionLink($"{machine.Name}" + " | Working since: " + $"{machine.WorkingSince.ToString("MM/dd/yyyy")}", "Details", new { id = machine.MachineId })</li>
+}
+}
+
+
+<p>@Html.ActionLink("Add a new machine to the database", "Create")</p>
+<p>@Html.ActionLink("Back to Home page", "Index", "Home")</p>
+
+</div>

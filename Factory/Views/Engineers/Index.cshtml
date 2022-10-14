@@ -1,0 +1,26 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Factory.Models;
+
+<div class="container">
+
+<h1>Our Engineers:</h1>
+
+@if (@Model.Count == 0)
+{
+  <h3>No engineers have been added to the database yet!</h3>
+} 
+
+<ul>
+  @foreach(Engineer engineer in Model)
+  {
+    <li>@Html.ActionLink($"{engineer.Name}" + " | Working since: " + $"{engineer.WorkingSince.ToString("MM/dd/yyyy")}", "Details", new { id = engineer.EngineerId })</li>
+  }
+</ul>
+
+<p>@Html.ActionLink("Add new engineer to the database", "Create")</p>
+<p>@Html.ActionLink("Back to Home page", "Index", "Home")</p>
+
+</div>
