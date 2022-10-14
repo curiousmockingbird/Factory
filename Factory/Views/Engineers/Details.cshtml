@@ -24,11 +24,12 @@ else
     <li>@join.Machine.Name</li>
   }
   </ul>
-  <p>@Html.ActionLink("Delete engineer from database", "Delete", new { id = Model.EngineerId })</p>
   <hr />
 }
+  <p>@Html.ActionLink("Delete engineer from database", "Delete", new { id = Model.EngineerId })</p>
+  <hr />
 
-<p>@Html.ActionLink("Delete assigned machines", "Edit", new { id = Model.EngineerId })</p>
-<p>@Html.ActionLink("Assign to another machine", "Edit", new { id = Model.EngineerId })</p>
+<p>@Html.ActionLink("Delete assigned machines", "DeleteMachine", new { id = Model.EngineerId })</p>
+<p>@Html.ActionLink("Assign to another machine", "AssignAnotherMachine", new { id = Model.EngineerId })</p>
 <p>@Html.ActionLink("Back to list of engineers", "Index")</p>
 </div>

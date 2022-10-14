@@ -109,24 +109,14 @@ namespace Factory.Controllers
       return RedirectToAction("Index");
     }
 
-    // [HttpPost]
-    //   public ActionResult AddCategory(Item item, int CategoryId)
-    //   {
-    //     foreach(CategoryItem entry in _db.CategoryItem)
-    //     {
-    //       if(item.ItemId == entry.ItemId && CategoryId == entry.CategoryId)
-    //       {
-    //         return RedirectToAction("Index");
-    //       }
-    //     }
-      
-    //     if (CategoryId != 0) 
-    //     {
-    //       _db.CategoryItem.Add(new CategoryItem() { CategoryId = CategoryId, ItemId = item.ItemId });
-    //       _db.SaveChanges();
-    //     }
-    //       return RedirectToAction("Index");
-    //   }
+    [HttpPost]
+    public ActionResult DeleteEngineer(int joinId)
+    {
+        var joinEntry = _db.EngineerMachine.FirstOrDefault(entry => entry.MachineId == joinId);
+        _db.EngineerMachine.Remove(joinEntry);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+    }
 
   }
 }
