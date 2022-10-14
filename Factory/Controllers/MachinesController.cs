@@ -109,10 +109,16 @@ namespace Factory.Controllers
       return RedirectToAction("Index");
     }
 
-    [HttpPost]
-    public ActionResult DeleteEngineer(int joinId)
+    public ActionResult DeleteEngineer(int id)
     {
-        var joinEntry = _db.EngineerMachine.FirstOrDefault(entry => entry.MachineId == joinId);
+      var thisMachine = _db.Machines.FirstOrDefault(Machine => Machine.MachineId == id);
+      return View(thisMachine);
+    }
+
+    [HttpPost, ActionName("DeleteEngineer")]
+    public ActionResult DeleteEngineerConfirmed(int joinId)
+    {
+        var joinEntry = _db.EngineerMachine.FirstOrDefault(entry => entry.EngineerMachineId == joinId);
         _db.EngineerMachine.Remove(joinEntry);
         _db.SaveChanges();
         return RedirectToAction("Index");

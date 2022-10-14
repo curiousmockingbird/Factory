@@ -1,14 +1,13 @@
 @{
   Layout = "_Layout";
 }
-
 @using Factory.Models;
-@model Factory.Models.Engineer
+@model Factory.Models.Machine
 
 <div class="container">
-<h2>Are you sure you want to remove this machine from this engineer's assignment?</h2>
+<h2>Are you sure you want to remove this assigned engineer from this machine?</h2>
 
-<p>Engineer: @Html.DisplayFor(model => model.Name)</p>
+<p>Machine: @Html.DisplayFor(model => model.Name)</p>
 
 @using (Html.BeginForm())
 {
