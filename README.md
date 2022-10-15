@@ -33,7 +33,7 @@ _This is an MVC application that stores a list of engineers into a database, and
 
 * _Download the MySQL Workbench DMG file [here](https://dev.mysql.com/downloads/file/?id=484391). Open MySQL Workbench._
 * _Select >> Local Instance 3306_
-* _Create a file called appsettings.json in HairSalon folder._
+* _Create a file called appsettings.json in Factory folder._
 * _Copy the following in the file:_
  _{ "ConnectionStrings": { "DefaultConnection": "Server=localhost;Port=3306;database=factory_project;uid=root;pwd=[YOUR_PASSWORD_HERE];" } }_
 
